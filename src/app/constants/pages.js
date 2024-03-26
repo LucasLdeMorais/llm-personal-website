@@ -5,12 +5,12 @@ const pages = [
         pageName: "Home"
     },
     {
-        path: "/1",
-        pageName: "1"
+        path: "/Projects",
+        pageName: "Projects"
     },
     {
-        path: "/2",
-        pageName: "2"
+        path: "/Contact",
+        pageName: "Contact"
     }
 ];
 
