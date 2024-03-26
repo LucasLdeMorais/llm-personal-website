@@ -13,12 +13,11 @@ const Footer = () => {
         top: auto;
         right: 0;
         bottom: 0;
-        width: 99%;
         min-height: 100px;
-        border: 5px ridge ${currentTheme.colors.secondary};
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
         background-color: ${currentTheme.colors.primary};
+        border-top: 5px ridge ${currentTheme.colors.secondary};
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
 
         & h4 {
             margin: 10px auto;
@@ -63,8 +62,8 @@ const Footer = () => {
             linkName:"linkedin"
         },
         {
-            link: "/contato",
-            linkName:"contato"
+            link: "/contact",
+            linkName:"contact"
         }
     ]
 
