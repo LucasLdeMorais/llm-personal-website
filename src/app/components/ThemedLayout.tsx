@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, Dispatch, SetStateAction, useContext, useState } from "react";
+import { createContext, Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import * as ThemeConfig from "../constants/ThemeConfig";
 import type { Theme } from "../constants/ThemeConfig";
@@ -8,7 +8,8 @@ import type { Theme } from "../constants/ThemeConfig";
 // Interface para o contexto do tema
 interface ThemeContextInterface {
     currentTheme: Theme,
-    setTheme: Dispatch<SetStateAction<Theme>>
+    setTheme: Dispatch<SetStateAction<Theme>>,
+    toggleDarkMode: Dispatch<SetStateAction<boolean>>
 }
 
 // Criação do contexto do tema
@@ -25,11 +26,20 @@ export function useThemeContext() {
 
 export default function ThemedLayout({ children }: Readonly<{children: React.ReactNode}>) {
     const [theme, setTheme] = useState(ThemeConfig.leafTheme);
+    const [darkMode, setDarkMode] = useState(false);
+    const prevDarkMode = useRef(false);
+
+    useEffect(() => {
+        if(prevDarkMode.current !== darkMode){
+            
+        }
+    }, [darkMode]);
 
     // Define o contexto do tema
     const themeContextValue: ThemeContextInterface = {
         currentTheme: theme,
-        setTheme: setTheme
+        setTheme: setTheme,
+        toggleDarkMode: setDarkMode
     };
 
     return (

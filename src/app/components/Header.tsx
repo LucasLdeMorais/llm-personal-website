@@ -5,6 +5,7 @@ import * as ThemeConfig from "../constants/ThemeConfig";
 import type { Theme } from "../constants/ThemeConfig";
 import ThemedLayout, { useThemeContext } from "./ThemedLayout";
 import styled from "styled-components";
+import Navigation from "./Navigation";
 
 export default function Header() {
     const { setTheme, currentTheme } = useThemeContext();
@@ -28,26 +29,44 @@ export default function Header() {
         color: ${currentTheme.colors.secondary};
         top: 0;
         right: 0;
-        width: 99%;
-        min-height: 100px;
-        border: 5px ridge ${currentTheme.colors.secondary};
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
+        min-height: max-content;
         background-color: ${currentTheme.colors.primary};
+        border-bottom: 5px ridge ${currentTheme.colors.secondary};
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    `
+
+    const StyledHeading = styled.h2`
+        margin: 0;
+        padding: 10px;
+    `
+
+    const ThemeManagementWrapper = styled.div`
+        padding: 10px;
+
+        & button {
+            margin-left: 5px;
+        }
+
+        & select {
+            margin-right: 10px;
+        }
     `
 
     return <StyledHeader>
-        <h2>LLM</h2>
-        <button onClick={(e) => handleToggleDarkMode(e)}>dark mode</button>
-        <label>Themes</label>
-        <select onChange={(e) => handleChangeTheme(e)} name="Themes" value={currentTheme.themeName}>
-            { ThemeConfig.Themes.map( (theme, index) => {
-                return (index == 0? <option key={theme.themeName} value={theme.themeName}>
-                    {theme.themeName}
-                </option> : <option key={theme.themeName} value={theme.themeName}>
-                    {theme.themeName}
-                </option>)
-            })}
-        </select>
+        <StyledHeading>LLM</StyledHeading>
+        <ThemeManagementWrapper>
+            <label>Themes:</label><br/>
+            <select onChange={(e) => handleChangeTheme(e)} name="Themes" value={currentTheme.themeName}>
+                { ThemeConfig.Themes.map( (theme, index) => {
+                    return (index == 0? <option key={theme.themeName} value={theme.themeName}>
+                        {theme.themeName}
+                    </option> : <option key={theme.themeName} value={theme.themeName}>
+                        {theme.themeName}
+                    </option>)
+                })}
+            </select>
+            <button onClick={(e) => handleToggleDarkMode(e)}>dark mode</button>
+        </ThemeManagementWrapper>
     </StyledHeader>
 }
